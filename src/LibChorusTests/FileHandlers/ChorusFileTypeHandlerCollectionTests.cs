@@ -28,6 +28,11 @@ namespace LibChorus.Tests.FileHandlers
 			{
 				var outputDir = Directory.GetParent(BaseDir).FullName;
 				var samplePluginDir = Path.Combine(outputDir, "SamplePlugin");
+				if (!Directory.Exists(samplePluginDir))
+				{
+					samplePluginDir = Path.Combine(outputDir, "Debug");
+					samplePluginDir = Path.Combine(samplePluginDir, "SamplePlugin");
+				}
 				var samplePluginDllPath = Path.Combine(samplePluginDir, "Tests-ChorusPlugin.dll");
 				return samplePluginDllPath;
 			}

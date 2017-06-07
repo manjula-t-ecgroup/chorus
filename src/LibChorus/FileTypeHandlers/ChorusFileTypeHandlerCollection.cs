@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -33,7 +34,10 @@ namespace Chorus.FileTypeHandlers
 				if (additionalAssemblies != null)
 				{
 					foreach (var assemblyPath in additionalAssemblies)
+					{
+						if (System.IO.File.Exists(assemblyPath))
 						aggregateCatalog.Catalogs.Add(new AssemblyCatalog(assemblyPath));
+					}
 				}
 
 				ComposablePartCatalog catalog;
